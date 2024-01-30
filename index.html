@@ -3,11 +3,55 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>JavaScript Fundamentals Quiz</title>
     <link rel="stylesheet" href="./assets/CSS/reset.css" />
     <link rel="stylesheet" href="./assets/CSS/styles.css" />
   </head>
   <body>
+    <!-- Menu -->
+    <section>
+        <div>View High Scores</div>
+    <div>Time: <span>60</span> Seconds</div>
+    </section>
+    <!-- Intro card with start button -->
+    <section>
+    <header>
+      <h1>JavaScript Fundamentals Quiz</h1>
+    </header>
+    <subheader>
+    <p>
+      Get ready to embark on a JavaScript journey of fun and frolic! You've got a lively 50 seconds to tackle 10 questions that'll tickle
+      your coding brain. But watch out! For every oopsie-doodle answer, we're swiping 10 seconds from your timer. Your grand finale score?
+      The precious seconds left on the clock when you conquer this quiz. Let the JavaScript jubilation begin! 🚀💻
+    </p>
+    </subheader>
+    <button>Start!</button>
+    </section>
+<!-- Question / Answer cards -->
+    <section>
+        <header><h2>Question</h2></header>
+        <div>Answer Choices</div>
+        <div>Answer Feedback</div>
+    </section>
+<!-- Final card displaying score and form to submit -->
+      <section>
+        <h2>Your Score: <span>Score</span></h2>
+        <form>
+          <label>Enter Initials:</label>
+          <input/>
+          <button>Submit</button>
+        </form>
+    </section>
+<!-- Scoreboard card with button to retry the quiz -->
+      <div id="scoreboard-container" class="hide">
+        <h2>Scoreboard</h2>
+        <ul>
+            <li></li>
+        </ul>
+        <button id="retry-btn" class="btn">Retry</button>
+      </div>
+    </div>
+
     <script src="./assets/scripts/script.js"></script>
   </body>
 </html>
