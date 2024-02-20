@@ -15,7 +15,7 @@
       <span class="has-text-weight-bold">Time: <span class="has-text-weight-bold">60</span> Seconds</span>
     </section>
     <!-- Intro card with start button -->
-    <section class="card">
+    <section id="intro" class="card">
       <header class="card-header">
         <h1 class="title is-1 has-text-white is-size-3 has-text-centered">JavaScript Fundamentals Quiz</h1>
       </header>
@@ -25,18 +25,17 @@
           tickle your coding brain. But watch out! For every oopsie-doodle answer, we're swiping 10 seconds from your timer. Your grand
           finale score? The precious seconds left on the clock when you conquer this quiz. Let the JavaScript jubilation begin! 🚀💻
         </p>
-        <button class="button block">Start!</button>
+        <button id="start-btn" class="button block">Start!</button>
       </div>
     </section>
     <!-- Question / Answer cards -->
-    <section class="card questions-card">
-      <button class="delete"></button>
-      <header class="title"><h2 class="title is-3">Question</h2></header>
-      <div>Answer Choices</div>
+    <section id="questions-card" class="card questions-card hide">
+      <header class="card-header"><h2 class="title has-text-white is-size-3 has-text-centered">Question</h2></header>
       <div>Answer Feedback</div>
+      <div>Answer Choices</div>
     </section>
     <!-- Final card displaying score and form to submit -->
-    <section class="card score">
+    <section class="card score hide">
       <h2>Your Score: <span>Score</span></h2>
       <form>
         <label>Enter Initials:</label>
@@ -45,12 +44,12 @@
       </form>
     </section>
     <!-- Scoreboard card with button to retry the quiz -->
-    <section class="card scorecard">
+    <section class="card scorecard hide">
       <h2>Scoreboard</h2>
       <ul>
         <li></li>
       </ul>
-      <button id="retry-btn" class="button">Retry</button>
+      <button class="button retry-btn">Retry</button>
     </section>
 
     <script src="./assets/scripts/script.js"></script>

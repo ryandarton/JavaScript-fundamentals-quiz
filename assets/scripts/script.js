@@ -1,3 +1,5 @@
+const startButton = document.getElementById('start-btn');
+
 // questions are sourced from javatpoint.com
 const questions = [
   {
@@ -84,3 +86,10 @@ const questions = [
     ],
   },
 ];
+
+function startQuiz() {
+  document.getElementById('questions-card').classList.remove('hide');
+  document.getElementById('intro').classList.add('hide');
+}
+
+startButton.addEventListener('click', startQuiz);

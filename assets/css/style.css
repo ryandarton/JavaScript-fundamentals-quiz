@@ -5,10 +5,6 @@
   margin: 1rem auto 1rem auto;
 }
 
-.questions-card {
-  display: none;
-}
-
 .card-content {
   display: flex;
   background-color: transparent;
@@ -20,11 +16,7 @@
   align-items: center;
 }
 
-.score {
-  display: none;
-}
-
-.scorecard {
+.hide {
   display: none;
 }
 
