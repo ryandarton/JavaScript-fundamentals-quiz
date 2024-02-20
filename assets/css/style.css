@@ -21,10 +21,61 @@
 }
 
 .card {
-  max-width: 400px;
+  max-width: 480px;
   margin-left: auto;
   margin-right: auto;
 }
 
-.button {
+.card-content {
+  display: flex;
+  background-color: transparent;
+  padding: 1.5rem;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+
+#question {
+  height: 6rem;
+}
+
+#truther.correct {
+  color: #3c763d; /* Green color for correct answers */
+}
+
+#truther.wrong {
+  color: #a94442; /* Red color for wrong answers */
+}
+
+.btn-grid {
+  height: fit-content;
+  width: 450px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#timer-flash {
+  animation: flashRed 0.5s;
+}
+
+/* Keyframes for just the text color flash */
+@keyframes flashRed {
+  0% {
+    color: #a94442;
+  }
+  100% {
+    color: #ddd; /* Original text color */
+  }
+  50% {
+    color: #a94442; /* Flash red color */
+  }
+}
+
+.flash-wrong {
+  animation: flashRed 0.5s;
 }

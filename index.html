@@ -11,8 +11,7 @@
   <body>
     <!-- Menu -->
     <section class="block menu">
-      <span>View High Scores</span>
-      <span class="has-text-weight-bold">Time: <span class="has-text-weight-bold">60</span> Seconds</span>
+      <span id="timer" class="has-text-weight-bold hide">Time: <span id="time-left" class="has-text-weight-bold">60</span> Seconds</span>
     </section>
     <!-- Intro card with start button -->
     <section id="intro" class="card">
@@ -31,25 +30,38 @@
     <!-- Question / Answer cards -->
     <section id="questions-card" class="card questions-card hide">
       <header class="card-header"><h2 class="title has-text-white is-size-3 has-text-centered">Question</h2></header>
-      <div>Answer Feedback</div>
-      <div>Answer Choices</div>
+      <div class="card-content">
+        <div class="content question-content">
+          <h2 id="question" class="title is-size-4 has-text-centered"></h2>
+          <div id="answer-buttons" class="button btn-grid"></div>
+          <div id="question-feedback" class="hide">Your last response was <span id="truther"></span></div>
+        </div>
+      </div>
     </section>
     <!-- Final card displaying score and form to submit -->
-    <section class="card score hide">
-      <h2>Your Score: <span>Score</span></h2>
-      <form>
-        <label>Enter Initials:</label>
-        <input class="input" type="text" />
-        <button class="button">Submit</button>
-      </form>
+    <section id="game-over-container" class="card score hide">
+      <header class="card-header">
+        <h2 class="title is-1 has-text-white is-size-3 has-text-centered">Game Over</h2>
+      </header>
+      <div class="card-content">
+        <h2>Your Score: <span id="final-score"></span></h2>
+        <form id="score-form">
+          <label for="initials">Enter Your Initials:</label>
+          <input class="input block" type="text" id="initials" name="initials" required />
+          <button type="submit" class="button submit-btn btn block">Submit</button>
+        </form>
+      </div>
     </section>
     <!-- Scoreboard card with button to retry the quiz -->
-    <section class="card scorecard hide">
-      <h2>Scoreboard</h2>
-      <ul>
-        <li></li>
-      </ul>
-      <button class="button retry-btn">Retry</button>
+    <section id="scoreboard-container" class="card scorecard hide">
+      <header class="card-header">
+        <h2 class="title is-1 has-text-white is-size-3 has-text-centered">Scoreboard</h2>
+      </header>
+      <div class="card-content">
+        <ul class="block" id="score-list"></ul>
+        <button id="clear-scores-btn" class="button block">Clear Scoreboard</button>
+        <button id="retry-btn" class="button block">Retry</button>
+      </div>
     </section>
 
     <script src="./assets/scripts/script.js"></script>

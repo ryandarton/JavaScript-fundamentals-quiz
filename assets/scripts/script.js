@@ -1,4 +1,8 @@
 const startButton = document.getElementById('start-btn');
+const timerDisplay = document.getElementById('time-left');
+let totalSeconds = document.getElementById('time-left').textContent;
+let finalScore = document.getElementById('final-score').textContent;
+let timeInterval;
 
 // questions are sourced from javatpoint.com
 const questions = [
@@ -87,9 +91,146 @@ const questions = [
   },
 ];
 
+let currentQuestionIndex = 0;
+
+function showQuestion(questionIndex) {
+  const questionObj = questions[questionIndex];
+  const questionElement = document.getElementById('question');
+  const answerButtonsElement = document.getElementById('answer-buttons');
+
+  answerButtonsElement.innerHTML = '';
+
+  if (currentQuestionIndex > 0 && currentQuestionIndex < questions.length) {
+    document.getElementById('question-feedback').classList.remove('hide');
+  } else {
+    document.getElementById('question-feedback').classList.add('hide');
+  }
+
+  questionElement.textContent = questionObj.question;
+
+  questionObj.answers.forEach((answer) => {
+    const button = document.createElement('button');
+    button.textContent = answer.text;
+    button.classList.add('btn');
+    if (answer.correct) {
+      button.dataset.correct = answer.correct;
+    }
+    button.addEventListener('click', selectAnswer);
+    answerButtonsElement.appendChild(button);
+  });
+}
+
+function selectAnswer(e) {
+  const selectedButton = e.target;
+  const correct = selectedButton.dataset.correct;
+  const trutherElement = document.getElementById('truther');
+  const timerElement = document.getElementById('timer');
+
+  trutherElement.classList.remove('correct', 'wrong');
+  timerElement.classList.remove('flash-wrong');
+
+  if (correct) {
+    trutherElement.classList.add('correct');
+    trutherElement.textContent = 'Correct!';
+  } else {
+    totalSeconds -= 5;
+    updateTimerDisplay(totalSeconds);
+    trutherElement.classList.add('wrong');
+    trutherElement.textContent = 'Wrong, minus 5 seconds...';
+    timerElement.classList.remove('flash-wrong');
+    void timerElement.offsetWidth;
+    timerElement.classList.add('flash-wrong');
+
+    setTimeout(() => {
+      timerElement.classList.remove('flash-wrong');
+    }, 500);
+  }
+  currentQuestionIndex++;
+  if (currentQuestionIndex < questions.length) {
+    showQuestion(currentQuestionIndex);
+  } else {
+    endQuiz();
+  }
+}
+
+function updateTimerDisplay(seconds) {
+  timerDisplay.textContent = seconds;
+}
+
+function startTimer() {
+  timeInterval = setInterval(function () {
+    totalSeconds--;
+    updateTimerDisplay(totalSeconds);
+
+    if (totalSeconds <= 0) {
+      endQuiz();
+    }
+  }, 1000);
+}
+
 function startQuiz() {
+  document.getElementById('timer').classList.remove('hide');
+  totalSeconds = 60;
+  currentQuestionIndex = 0;
+  updateTimerDisplay(totalSeconds);
+  startTimer();
+  const answerButtons = document.querySelectorAll('#answer-buttons button');
+  answerButtons.forEach((button) => {
+    button.classList.remove('selected');
+    button.removeAttribute('data-selected');
+  });
+  showQuestion(currentQuestionIndex);
   document.getElementById('questions-card').classList.remove('hide');
   document.getElementById('intro').classList.add('hide');
+  document.getElementById('final-score').textContent = totalSeconds;
+}
+
+function saveScore(initials, score) {
+  const highscores = JSON.parse(localStorage.getItem('highscores')) || [];
+  const newScore = { initials, score };
+  highscores.push(newScore);
+  highscores.sort((a, b) => b.score - a.score);
+  localStorage.setItem('highscores', JSON.stringify(highscores));
+}
+
+function showScoreboard() {
+  const highscores = JSON.parse(localStorage.getItem('highscores')) || [];
+  const scoreList = document.getElementById('score-list');
+  document.getElementById('game-over-container').classList.add('hide');
+  scoreList.innerHTML = '';
+  highscores.forEach((score) => {
+    const li = document.createElement('li');
+    li.textContent = `${score.initials} - ${score.score}`;
+    scoreList.appendChild(li);
+  });
+  document.getElementById('scoreboard-container').classList.remove('hide');
+}
+
+document.getElementById('score-form').addEventListener('submit', function (event) {
+  event.preventDefault();
+  const initials = document.getElementById('initials').value;
+  saveScore(initials, totalSeconds);
+  showScoreboard();
+});
+
+document.getElementById('retry-btn').addEventListener('click', function () {
+  document.getElementById('scoreboard-container').classList.add('hide');
+  let currentQuestionIndex = 0;
+  startQuiz();
+});
+
+document.getElementById('clear-scores-btn').addEventListener('click', function () {
+  localStorage.removeItem('highscores');
+  showScoreboard();
+});
+
+function endQuiz() {
+  updateTimerDisplay(totalSeconds);
+  // finalScore = totalSeconds;
+  document.getElementById('final-score').textContent = totalSeconds;
+  clearInterval(timeInterval);
+  document.getElementById('questions-card').classList.add('hide');
+  document.getElementById('game-over-container').classList.remove('hide');
 }
 
 startButton.addEventListener('click', startQuiz);
