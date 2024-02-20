@@ -1,0 +1,29 @@
+.menu {
+  width: 100%;
+  text-decoration: wavy;
+  text-align: center;
+  margin: 1rem auto 1rem auto;
+}
+
+.questions-card {
+  display: none;
+}
+
+.score {
+  display: none;
+}
+
+.score-card {
+  display: none;
+}
+
+.card {
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.button {
+  margin-left: auto;
+  margin-right: auto;
+}
