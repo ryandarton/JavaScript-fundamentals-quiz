@@ -1,6 +1,7 @@
 # JavaScript-fundamentals-quiz
 
 A timed quiz to test your knowledge about JavaScript!
+![Screenshot](assets/images/Screenshot.png)
 
 ## Sources:
 
